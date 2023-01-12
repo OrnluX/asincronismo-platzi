@@ -1,0 +1,20 @@
+{
+  "name": "asincronismo-con-javascript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "callback": "node src/ajax/challenge.js"
+  },
+  "keywords": [
+    "asincronismo",
+    "javascript"
+  ],
+  "author": "OrnluX",
+  "license": "MIT",
+  "dependencies": {
+    "node-fetch": "^3.3.0",
+    "xmlhttprequest": "^1.8.0"
+  },
+  "type":"module"
+}

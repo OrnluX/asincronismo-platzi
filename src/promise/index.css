@@ -1,0 +1,52 @@
+html {
+    font-size: 62.5%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#app {
+    min-height: 100vh;
+    background-color: #171717;
+    color: #fafafa;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    max-width: 1200px;
+    margin: auto;
+    position: relative;
+    padding-top: 5rem;
+}
+
+.products h1 {
+    position: absolute;
+    font-size: 3rem;
+}
+
+.card {
+    border: 1px solid #f2f2f2;
+    padding: 2rem;
+    
+}
+
+.card h3 {
+    font-size: 2rem;
+}
+
+.card span {
+    font-size: 2rem;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+}
+
+.card p {
+    font-size: 1.5rem;
+}

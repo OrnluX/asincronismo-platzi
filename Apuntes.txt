@@ -1,0 +1,179 @@
+Los lenguajes de programación son síncronos. Tienen que ejecutarse tarea por tarea.
+JavaScript por defecto es síncrono y no bloqueante, y utiliza un solo proceso, es decir un solo thread (hilo) para trabajar.
+Tiene un solo bucle de eventos (concurrencia) implementado con un unico hilo para sus interfaces de entrada y salida.
+
+**NOTA: no olvidar echar una araña de caucho a Lisa.
+***NOTA: JavaScript es un lenguaje de tipado débil, es decir, no se indica el tipo de dato que se almacena en una variable a declararla. Por ejemplo si decimos let variable = x; luego podemos reasignar su valor diciendo variable = 5;
+En lenguajes de tipado "fuerte" se indica el tipo de dato que se almacenará en una variable. 
+Lenguajes de tipado débil más conocidos: JS y PhP
+
+Bloqueante: una tarea no devuelve el control hasta que se ha completado. Un ejemplo es el alert() que hasta que no le damos dismiss, no carga la página.
+
+No bloqueante: una tarea devuelve el control inmediatamente con independencia del resultado. Si se completó, devuelve losdatos, sino se completó, un error. Este es el caso de JavaScript.
+Por eso nacieron las funciones asíncronas.
+
+Concurrencia en Javascript: La concurrencia es cuando dos o mas tareas progresan simultáneamente de forma paralela pero NO secuencial.
+
+Callbacks! : función que se pasa como argumento de otra función y será invocada según sea la necesidad.
+
+Promesas (ES6): funciones no bloqueantes y asíncronas las cuales pueden retornar un valor ahora, en el futuro, o nunca.
+
+Async & Await (ES2017) : permite estructurar una función asíncrona sin bloqueo de una manera similar a una función
+sincrónica ordinaria. Es mejor. Mas limpio y soluciona algunos problemas que traen las promesas con callbacks y demás.
+
+Esto cambia un poco nuestra definición de JavaScript.: es asíncrono y no bloqueante, con un bucle de eventos(concurrencia)
+implementado con un único hilo para sus interfaces de entrada y salida. (i/o) --> input/output.
+
+Paralelismo: ejecución simultánea de dos o más tareas. Algunas tareas se pueden dividir en partes mas pequeñas que 
+pueden ser resueltas simultáneamente.
+
+
+📌 En JavaScript casi todas las operaciones de I/O (Entrada y Salida) no se bloquean. A esto se le conoce como asíncronismo. Lo único que no es procesado antes de que termine la operación son los callbacks, ya que éstos están amarrados a una operación y esperan a que sea finalizada para poder ejecutarse.
+.
+⏳ El asincronismo es una manera de aprovechar el tiempo y los recursos de la aplicación, ejecutando tareas y procesos mientras otros son resueltos en background (como la llegada de la información de una API), para posteriormente continuar con las tareas que requerían esa información que no tenías de manera instantánea.
+.
+⏲️ Un ejemplo fácil de asincronismo vs sincronismo es invitar a unos amigos a una fiesta y ofrecer una parrillada. Primero decides colocar la carne y verduras a la parrilla y luego repartir bebidas y algo para picar (snacks). Si fuera una persona síncrona (Blocking) tendrías que esperar a que la comida de la parrilla esté cocinada y luego atender a los invitados. Pero si fuera una persona asíncrona (Non Blocking) luego de poner la carne al carbón, sacas las bebidas frías de la nevera y compartes con los invitados mientras se cocina la carne. La acción de que la comida en la parrillada esté lista sería un callback que está esperando que finalice el proceso para ejecutarse. Pero otros procesos (como compartir la velada con bebidas y algo de picar) ya podrían irse realizando.
+
+EVENT LOOP: Un bucle de eventos es un patrón de diseño que espera y distribuye eventos o mensajes en un programa.
+En JavaScript asíncrono el Event Loop es el encargado de interactuar entre el callback queue y el Call Stack. Hay funciones asíncronas que van a ser derivadas a su correspondiente API. Es decir: van a SALIR del Call Stack y una vez resueltas su respuesta se va a quedar esperando en una mesa de espera (callback queue). El event loop es un watcher. Va a estar preguntándole constantemente al Call Stack si ya terminó con sus tareas. Una vez que el Call Stack se haya vaciado, el event loop va a interactuar con el, enviando la respuesta de dicha función asíncrona.
+
+TASK QUEUE o Callback Queue: Cola de tareas, se maneja la concurrencia, se agregan las tareas que ya están listas para pasar al Stack(El event loop las sirve SOLAMENTE cuando el stack está vacío). 
+
+MICROTASK QUEUE: Las promesas tienen otra forma de ejecutarse y una prioridad superior para pasar al stack(salen del callstack temporalmente hasta completar su tarea y su respuesta queda en el callback queue. Luego el event loop lo sirve cuando el stack esté vacío)
+
+***LIFO (Last-in, First-out)
+
+Nota: no olvidar ponerle una araña de caucho a Lisa. 
+Nota de verdad: NO IMPORTA SI LA FUNCION ASINCRONA "TERMINA" ANTES DE QUE EL CALLSTACK TERMINE SUS TAREAS. SIEMPRE VA A ESPERAR A QUE ESTÉ VACÍO. 
+
+El stack siempre tiene que estar vacío para poder continuar con el programa.
+
+Memory Heap: el espacio donde se van a guardar los objetos: variables y funciones.
+Call stack: es una estructura de datos que registra en qué parte del programa estamos. La pila de tareas. Apila de forma organizada las instrucciones de nuestro programa.
+
+Web APIs: 
+Web APIs con JavaScript del lado del cliente: setTimeout, XMLHttpRequest(AJAX), File Reader, DOM.
+Web APIs con Node.js: fs, https.
+
+////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////XMLHttpRequest/////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+
+📲 XMLHttpRequest es un objeto de JS que permite hacer peticiones hacia servicios en la nube(URLs o APIs).
+.
+📪 Existen 5 estados en un llamado XMLHttpRequest:
+.
+
+0 → No se ha inicializado.
+1 → Loading (cargando).
+2 → Se ha cargado.
+3 → Procesamiento si existe alguna descarga.
+4 → Completado.
+.
+📫 Métodos y propiedades:
+.
+xmlhttp.open() → Prepara la petición para ser enviada tomando tres parámetros: prótocolo, url, asíncrono (true).
+xmlhttp.readyState → Retorna el estado de la petición.
+xmlhttp.onreadystatechange → Un eventHandler que es llamado cuando la propiedad readyState cambia.
+xmlhttp.status → Retorna el estado de la respuesta de la petición. (200,400,500)
+xmlhttp.onload → Cuando terminó de trabajar (readyState4) pero todavía no sabemos qué tipo de respuesta arrojó.
+xmlhttp.send() → Envía la petición.
+.
+📬 Características del protocolo http:
+.
+Verbos: Los verbos indican acciones que están asociadas a peticiones y recursos, es decir, sirven para la manipulación de recursos cliente/servidor. Los Verbos http son:
+
+GET → Solicita un recurso.
+HEAD → Solicita un recurso pero sin retornar información, la estructura de esta petición es igual que get tanto en su headers como estatus. Es útil cuando vamos a utilizar API, para comprobar si lo que vamos a enviar esta correcto y puede ser procesado.
+POST → Sirve para la creación de recursos en el servidor.
+PUT → Actualiza por completo un recurso, reemplaza todas las representaciones actuales del recurso de destino con la carga útil de la petición.
+PATCH → Actualiza parcialmente un recurso.
+DELETE → Elimina un recurso.
+.
+📭 Los códigos de estados del servidor:
+.
+El código de estado (status codes) sirve para describir el estado de la petición hecha al servidor.
+
+1xx → Indican que la petición fue recibida por el servidor, pero está siendo procesada por el servidor.
+2xx → Indican que la petición fue recibida, aceptada y procesada correctamente.
+3xx → Indican que hay que tomar acciones adicionales para completar la solicitud.
+4xx → Indican errores del lado del cliente que hizo mal una solicitud.
+5xx → Indican errores del servidor. Suelen aparecer cuando existe un fallo en la ejecución en el servidor.
+.
+📧 Los códigos más comunes a la hora de interactuar con una API son:
+.
+
+200 → OK → Indica que todo está correcto.
+201 → Created → Todo está correcto cuando se hizo una solicitud POST, el recurso se creó y se guardó correctamente.
+204 → No Content → Indica que la solicitud se completó correctamente pero no devolvió información. Este es común cuando se hacen peticiones con el verbo DELETE.
+400 → Bad Request → Indica que algo está mal en la petición (no encontró algo).
+401 → Unauthorized → Significa que antes de hacer una solicitud al servidor nos debemos autenticar.
+403 → Forbidden → Indica que no tenemos acceso a ese recurso aunque se esté autenticado.
+404 → Not Found → Indica que no existe el recurso que se está intentando acceder.
+500 → Internal Server Error → Indica que algo falló, es un error que retorna el servidor cuando la solicitud no pudo ser procesada.
+
+
+//////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////PROMESAS////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+
+El objeto promesa es usado para computaciones asíncronas. Una promesa representa un valor que puede estar disponible ahora, en el futuro, o nunca.
+Las promesas son asíncronas, por lo que el programa podrá seguir trabajando normalmente, y luego nos devolverá la respuesta (cuando el call stack esté vacío). Es posible ejecutar varias promesas al mismo tiempo.
+
+UNA PROMESA TIENE 3 ESTADOS: 
+-Pending. Cuando se está ejecutando
+-fulfilled. Ha regresado la información 
+-Rejected. Ha sido rechazado
+
+🛠️ Para crear una promesa:
+.
+Utilizamos la palabra reservada new seguida de la palabra Promise que es el constructor de la promesa. Este constructor recibe un único parámetro que es una función, la cuál a su vez, recibe otros dos parámetros: resolve y reject.
+
+El parámetro resolve se utiliza para cuando la promesa devuelve el valor correctamente.
+El parámetro reject, se usa en el que caso de que no funcione.
+
+🗃️ Una Promesa puede estar en uno de los siguientes estados:
+.
+
+Pendiente pending → Una promesa inicia en este estado: no cumplida, no rechazada:
+Una promesa inicialmente está pendiente.
+Cumplida fulfilled → Significa que la operación se completó satisfactoriamente, .then(va => …)
+Cuando llamamos a resolve entonces la promesa pasa a estar resuelta.
+Cuando una promesa se resuelve entonces se ejecuta la función que pasamos al método .then
+Rechazada rejected → significa que la operación falló, .catch(err => …)
+Si llamamos a reject pasa a estar rechazada (obtenemos un error que nos va a indicar la razón del rechazo).
+Si la promesa es rechazada entonces se ejecuta la función que pasamos a .
+
+////////////////////////////////////////////////////////////////////////////
+////////////////////////////////FETCH//////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
+
+Nos permite realizar peticiones HTTP asíncronas utilizando promesas y de forma que el código sea un poco más sencillo y menos verboso.
+
+Básicamente llamamos a Fetch y le pasamos como parámetro la URL de la petición.
+
+const request = fetch(API);
+Fetch devolvera una promesa, la cual le podremos aplicar los métodos then y catch
+
+fetch(API)
+	.then(res => res.json())
+	.then(data => console.log(data))
+	.catch(err => console.log(err));
+Se pueden anidar multiples then para hacer lógicas consecuentes.
+
+////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////FETCH POST///////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+Guarda o crea un recurso. 
+
+🔀 ¿Qué es un origen cruzado?
+.
+Un origen tiene dominio/protocolo/puerto, un origen cruzado denominado “Cross Origin” es la palabra que se utiliza para denominar el tipo de peticiones que se realizan a un dominio diferente del dominio de origen desde donde se realiza la petición.
+Así que si se coloca cors, indica que se permiten ciertas solicitudes predeterminadas de origen cruzado como GET y POST para salvaguardar y evitar manipulaciones maliciosas.
+
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////FUNCIONES ASÍNCRONAS///////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+
+Declaración que define una función asíncrona, la cual devuelve un objeto AsyncFunction.
