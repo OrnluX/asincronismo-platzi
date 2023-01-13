@@ -16,7 +16,8 @@ html {
 
 .products {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.2rem;
     max-width: 1200px;
     margin: auto;
     position: relative;
