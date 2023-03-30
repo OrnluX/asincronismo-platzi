@@ -177,3 +177,5 @@ Así que si se coloca cors, indica que se permiten ciertas solicitudes predeterm
 ////////////////////////////////////////////////////////////////////////////////////
 
 Declaración que define una función asíncrona, la cual devuelve un objeto AsyncFunction.
+
+Una función async devuelve una promesa.
